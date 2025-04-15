@@ -6,34 +6,15 @@ async function recupererTableau() {
     try {
         const $ = await cheerio.fromURL("https://www.footmercato.net/europe/ligue-des-champions-uefa/classement");
         
-        // Sélectionner le tableau avec le sélecteur passé en paramètre
+        // Sélectionner le tableau
         const tableau = $("table");
         
-        // **Partie 1 Modifiée: Récupération des en-têtes**
-        const headers = $(tableau).find('thead tr th').map((i, el) => $(el).text().trim()).get();
-
-        //Si aucun en-tête n'est trouvé, utiliser les premières cellules de la première ligne
-        if (headers.length === 0) {
-            const firstRowCells = $(tableau).find('tr:first-child td, tr:first-child th');
-            for (let i = 0; i < firstRowCells.length; i++) {
-                headers.push($(firstRowCells[i]).text().trim());
-            }
-        }
-        
-        // **Partie 2 Modifiée: Parcours des lignes et récupération des données**
+        // Parcourir les lignes du tableau pour récupérer les données
         let lignes = [];
-        //let rows = $(tableau).find('tbody tr'); // Removed this line
-
-        //Si aucune balise <tbody>, on récupère tous les <tr> à partir de la deuxième ligne
-        let rows = $(tableau).find('tbody tr');
-        if (rows.length === 0) {
-            rows = $(tableau).find('tr:not(:first-child)');
-        }
-
-        rows.each((i, element) => {
+        tableau.find('tbody tr').each((i, row) => { // Sélectionne directement les lignes du corps du tableau
             let ligne = {};
-            $(element).find('td').each((j, cell) => {
-                const key = headers[j] || 'col' + (j + 1);
+            $(row).find('td').each((j, cell) => { // Pour chaque cellule <td> de la ligne
+                const key = `col${j + 1}`; // Nom de colonne par défaut
                 ligne[key] = $(cell).text().trim();
             });
             lignes.push(ligne);
