@@ -1,0 +1,49 @@
+Ici on va utiliser nodejs pour travailler dans les serveurs 
+
+On va utiliser postman pour preparer et tester L'application(api).permet de verifier si (GET, POST, PUT, DELETE)
+ fonctionne correctement
+
+Middleware:ce qui se met entre le serveur et les firewalls cest comme la partie defensive de notre serveur
+
+Req.params: Entre des requetes pour des routes dynamiques
+
+acces token:
+
+rejex:c'est pour la securité du haut niveau
+
+Nb: pour l'exam dans les requetes nous devons faire un 
+
+crypto: cest pour hacher le mot de passe
+*on hache d'abord les donnees avant de les stockées
+
+-----------------------------------------------------------------------------------------------------------------------
+
+NB: Pouvoir gerer toutes les erreurs 
+
+Elements:
+
+*id email et password
+
+*clé super secrete(on va devoir utiliser une variable d'environnement: Les variables d'environnement sont des chaînes qui contiennent des informations sur l'environnement pour le système, et l'utilisateur ayant une session en cours.)
+<c'est la clé qui va cryptée et decryptée les utilisateurs
+
+*le token doit pouvoir expiré 
+
+./server.js: ici il a un piege
+
+on importe express, connectDB qui doit se connecter a la base de données, authRoutes
+
+NB:creer dees middleware
+
+
+
+
+
+
+
+
+
+
+
+
+
