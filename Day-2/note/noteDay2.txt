@@ -1,0 +1,31 @@
+Note personnelle
+
+
+1.Nature Asynchrone de Node.js :
+Node.js est asynchrone : Cela signifie qu'il peut exécuter plusieurs tâches en même temps sans bloquer le programme. Par exemple, si tu demandes à lire un fichier, Node.js continue à faire d'autres choses en attendant que le fichier soit prêt, puis il revient à la tâche une fois que la lecture est terminée.
+
+Node.js utilise l'Event Loop pour gérer les tâches de manière non-bloquante. Cela permet à Node.js de gérer de nombreux utilisateurs ou processus en même temps sans être ralenti par des tâches longues comme la lecture de fichiers ou l'accès à une base de données.
+
+2. Les Callbacks :
+Callbacks sont des fonctions que tu passes à d’autres fonctions pour qu'elles soient exécutées plus tard, quand une tâche est terminée. Par exemple, si tu veux lire un fichier, tu donnes une fonction callback qui sera appelée dès que la lecture du fichier est terminée.
+
+Problème des Callbacks Imbriquées : Si tu enchaînes plusieurs callbacks les uns dans les autres, cela peut rendre ton code difficile à lire et à maintenir (on appelle ça "callback hell"). Il est donc préférable d'utiliser d'autres mécanismes comme les Promises.
+
+3. Les Promises :
+Une Promise représente un résultat futur. Une tâche peut soit être réussie (résolue), soit échouer (rejetée).
+
+Avec les Promises, tu utilises .then() pour définir ce qui se passe lorsque la tâche réussit et .catch() pour gérer les erreurs. Cela permet d'éviter le "callback hell" et de rendre le code plus lisible.
+
+4. Async/Await :
+Async/Await est une manière plus moderne d'écrire du code asynchrone en le rendant presque aussi simple qu'un code synchrone.
+
+async fait en sorte qu'une fonction retourne toujours une Promise, et await permet de "attendre" que la Promise soit résolue avant de passer à l'étape suivante, tout en gardant le code lisible et propre.
+
+5. Gestion des erreurs :
+Il est essentiel de gérer les erreurs dans le code asynchrone. Que ce soit avec un if (err) dans un callback, un .catch() avec une Promise, ou un try...catch avec async/await, il faut toujours vérifier si quelque chose ne va pas.
+
+En résumé :
+Node.js permet de gérer des opérations longues (comme la lecture de fichiers ou les appels API) sans bloquer l'exécution grâce
+à l'asynchronisme. Cela se fait à travers les callbacks, les Promises et async/await. Il est important de comprendre comment
+ces outils fonctionnent pour écrire du code rapide, efficace et bien structuré. Et surtout, n'oublie jamais de gérer les
+erreurs pour rendre ton application robuste.

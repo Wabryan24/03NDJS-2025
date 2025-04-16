@@ -1,0 +1,91 @@
+Note personnelle
+
+
+Ici on va utiliser nodejs pour travailler dans les serveurs
+
+On va utiliser postman pour preparer et tester L'application(api).permet de verifier si (GET, POST, PUT, DELETE)
+ fonctionne correctement
+
+Middleware:ce qui se met entre le serveur et les firewalls cest comme la partie defensive de notre serveur
+
+Req.params: Entre des requetes pour des routes dynamiques
+
+acces token:
+
+rejex:c'est pour la securité du haut niveau
+
+Nb: pour l'exam dans les requetes nous devons faire un
+
+crypto: cest pour hacher le mot de passe
+*on hache d'abord les donnees avant de les stockées
+
+-----------------------------------------------------------------------------------------------------------------------
+
+NB: Pouvoir gerer toutes les erreurs
+
+Elements:
+
+*id email et password
+
+*clé super secrete(on va devoir utiliser une variable d'environnement: Les variables d'environnement sont des chaînes qui contienn><c'est la clé qui va cryptée et decryptée les utilisateurs
+
+*le token doit pouvoir expiré
+
+./server.js: ici il a un piege
+
+on importe express, connectDB qui doit se connecter a la base de données, authRoutes
+
+NB:creer dees middleware
+
+--------------------------------------------------------------------------------------------------------------------------
+
+1. Frontend vs Backend :
+Frontend : C’est ce que l’utilisateur voit et avec quoi il interagit sur un site (HTML, CSS, JavaScript).
+
+Backend : C’est la partie invisible qui gère les données, la logique, et la communication avec la base de données sur le serveur (exemple : PHP, Node.js).
+
+2. Technologies Frontend :
+HTML : Structure la page.
+
+CSS : Stylise la page.
+
+JavaScript : Rends la page interactive et permet d’envoyer des requêtes sans recharger la page.
+
+3. Technologies Backend :
+Le backend s’occupe de la gestion des utilisateurs, du traitement des données et de la communication avec la base de données.
+
+Des langages comme PHP, Node.js, Python sont utilisés pour cela.
+
+4. Base de données :
+C’est là que sont stockées toutes les informations importantes (utilisateurs, produits, etc.).
+
+Le frontend passe toujours par le backend pour y accéder, il ne peut pas y accéder directement.
+
+5. Node.js :
+C’est un environnement qui permet d’exécuter JavaScript côté serveur. Il est utilisé pour créer des serveurs web, des API et interagir avec des bases de données.
+
+6. Java vs JavaScript :
+Java : Langage compilé utilisé pour des applications complexes.
+
+JavaScript : Langage interprété utilisé dans les navigateurs et côté serveur avec Node.js.
+
+7. Résumé global :
+Frontend = Interface utilisateur avec HTML, CSS, JavaScript.
+
+Backend = Traitement des données avec des langages comme Node.js ou PHP.
+
+Base de données : Stockage des données.
+
+Node.js : Permet d’utiliser JavaScript côté serveur.
+
+8. Hébergement :
+o2switch : Héberge des sites web, des projets PHP, WordPress, etc., avec une interface facile à utiliser.
+
+9. MVC (Model-View-Controller) :
+Model (Modèle) : Gère les données et la logique (ex : récupérer des produits).
+
+View (Vue) : Affiche les données à l’utilisateur (ex : liste des produits).
+
+Controller (Contrôleur) : Gère la communication entre la vue et le modèle. C’est lui qui récupère les données et les envoie à la vue pour affichage.
+
+En résumé, un site web ou une application web fonctionne grâce à une séparation claire entre le frontend (ce que l’utilisateur voit) et le backend (ce qui gère la logique et les données), avec la base de données pour stocker les informations, le tout organisé selon l'architecture MVC.
