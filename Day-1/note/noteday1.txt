@@ -1,1 +1,33 @@
 Note personnelle 
+
+Creation d'un depot nommé 03NDJS-2025
+Installation de Node.js
+
+Quand on travaille avec Node.js, on utilise des outils pour gérer les librairies dont ton projet a besoin. Les plus connus sont:
+NPM et YARN 
+
+NPM est installé automatiquement avec Node.js.
+
+YARN est une alternative à NPM, mais faut l’installer avec la commande ci:  npm install --global yarn
+
+NVM, c’est un outil super pratique qui te permet d’installer plusieurs versions de Node.js et de switcher entre elles. Très utile quand tu bosses sur différents projets.
+
+Quand  j'installe une librairie, Node crée un dossier appelé node_modules.
+En gros il contient tout le code des librairies que j'ai installé
+
+
+Petit exemple de fonction:
+function sayHi(name) {
+  return `Salut ${name}`;
+}
+module.exports = sayHi;
+
+const sayHi = require('./greet');
+console.log(sayHi('James')); // ➜ Salut James
+
+
+
+
+
+
+
