@@ -24,12 +24,3 @@ console.error(error);
 res.status(500).json({ message: "L' inscription a échoué" });
 }
 };
-
-
-module.exports = {
-    registerUser,
-    loginUser,
-    getProfile,
-    getAllUsers,
-    deleteUser
-  };
