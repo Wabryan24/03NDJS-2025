@@ -7,4 +7,4 @@ app.use(express.json());
 app.use('/api', authRoutes);
 
 const PORT = 3000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Le serveur tourne sur le port ${PORT}`));
