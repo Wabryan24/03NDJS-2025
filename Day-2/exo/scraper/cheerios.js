@@ -3,25 +3,28 @@ const cheerio = require('cheerio');
 
 async function recupererTableau() {
     try {
-        const $ = await cheerio.fromURL("https://www.footmercato.net/europe/ligue-des-champions-uefa/classement");
+        const $ = await cheerio.fromURL("https://fr.wikipedia.org/wiki/Classement_des_pilotes_de_Formule_1_par_nombre_de_victoires_en_Grand_Prix");
 
-        
         const tableau = $("table");
 
-        
         let lignes = [];
-        tableau.find('tbody tr').each((i, row) => { 
+        tableau.find('tbody tr').each((i, row) => {
             let ligne = {};
-            $(row).find('td').each((j, cell) => { 
-                const key = `col${j + 1}`; 
-                ligne[key] = $(cell).text().trim();
-            });
+            const cells = $(row).find('td');
+
+            ligne["Classement"] = $(cells[0]).text().trim();
+            ligne["Pilote"] = $(cells[1]).text().trim();
+            ligne["Pays"] = $(cells[2]).text().trim();
+            ligne["Ecurie"] = $(cells[3]).text().trim();
+            ligne["Victoire"] = $(cells[4]).text().trim();
+            ligne["GP disputé"] = $(cells[5]).text().trim();
+            ligne["Pourcentage de victoires"] = $(cells[6]).text().trim();
+
             lignes.push(ligne);
         });
-        
 
         await sauvegarderDonnees(lignes);
-        
+
         return lignes;
     } catch (error) {
         console.error("Erreur lors de la récupération du tableau :", error);
@@ -38,6 +41,5 @@ async function sauvegarderDonnees(data) {
         console.error("Erreur lors de la sauvegarde des données :", error);
     }
 }
-
 
 recupererTableau();
