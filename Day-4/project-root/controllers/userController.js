@@ -10,17 +10,35 @@ const { users } = require('../models/userModel');
 // Ce fichier contient probablement la définition du modèle d'utilisateurs (ex: schéma, méthodes...).
 // 'users' est utilisé pour interagir avec les données des utilisateurs (ex: création, recherche dans la base de données).
 
-const registerUser = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-const hashedPassword = await bcrypt.hash(password, 10); 
-const newUser = { id: users.length + 1, email, password: hashedPassword };
-users.push(newUser);
+const SECRET = 'secret123'; 
 
-const userResponse = { id: newUser.id, email: newUser.email };
-res.status(201).json(userResponse);
-} catch (error) {
-console.error(error);
-res.status(500).json({ message: "L' inscription a échoué" });
-}
+exports.register = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
+
+  const exists = users.find(user => user.email === email);
+  if (exists) return res.status(400).json({ error: 'Email already exists' });
+
+  const hashed = await bcrypt.hash(password, 10);
+  const user = { id: Date.now().toString(), email, password: hashed };
+  users.push(user);
+
+  const { password: _, ...userWithoutPass } = user;
+  res.status(201).json(userWithoutPass);
 };
+
+
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
+    const user = users.find(u => u.email === email);
+    if (!user) return res.status(401).json({ error: 'Invalid credentials' });
+  
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return res.status(401).json({ error: 'Invalid credentials' });
+  
+    const token = jwt.sign({ id: user.id, email: user.email }, SECRET, { expiresIn: '1h' });
+    res.json({ token });
+  };
+  
+
+  
