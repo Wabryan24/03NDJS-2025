@@ -36,7 +36,7 @@ async function sauvegarderDonnees(data) {
     try {
         const jsonData = JSON.stringify(data, null, 2);
         fs.writeFileSync('sauvegarde.json', jsonData);
-        console.log('Données sauvegardées avec succès dans sauvegarde.json');
+        console.log('Données sauvegardées');
     } catch (error) {
         console.error("Erreur lors de la sauvegarde des données :", error);
     }
