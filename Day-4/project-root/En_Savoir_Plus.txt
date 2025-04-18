@@ -1,0 +1,44 @@
+Bonjour ou bonsoir Farid, j'espere que te porte bien.
+
+Problèmes rencontés:
+
+*Problème lors de la conteneurisation
+
+*Configuration de Postman               //Je ne savais qu'il avait du code json a mettre dans Postman
+
+*Conteneurisation
+
+
+Des erreurs:
+
+*erreur: POST http://localhost:3000/api/register
+POST http://localhost:3000/api/register           //Le serveur node n'etais pas lancé
+
+*ReferenceError: cd is not defined : Erreur de saisie
+
+*❌ TypeError: Cannot read properties of undefined (reading 'find')
+👉 Dans le fichier : controllers/authController.js ligne 19 // Au niveau de mon "user.find" il manquait "s" à "user"
+
+
+Solutions: 
+
+*Creation du ".dockerignore"
+
+
+
+
+
+
+
+
+
+
+
+
+Mis a jour:
+
+1- générer automatiquement un admin si l'email contient "admin"
+
+const isAdmin = email.includes('admin');
+const user = { id: Date.now().toString(), email, password: hashed, isAdmin };
+Comme çela, admin@mail.com deviendra automatiquement un admin 

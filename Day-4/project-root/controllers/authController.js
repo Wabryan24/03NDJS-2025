@@ -61,7 +61,15 @@ exports.login = async (req, res) => {
   exports.getUsers = (req, res) => {
     res.json(users.map(u => ({ id: u.id, email: u.email })));
   };
+  exports.getUsers = (req, res) => {
+    const user = users.find(u => u.id === req.user.id);
+    if (!user?.isAdmin) return res.status(403).json({ error: 'Accès refusé' });
   
+    res.json(users.map(u => ({ id: u.id, email: u.email })));
+  };
+  
+
+
   exports.deleteUser = (req, res) => {
     const index = users.findIndex(u => u.id === req.params.id);
     if (index === -1) return res.status(404).json({ error: 'Utilisateur introuvable' });
