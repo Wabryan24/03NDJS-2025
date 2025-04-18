@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/auth-api', {
+    await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     });
-    console.log('MongoDB est connecté');
+    console.log('Connexion à MongoDB Atlas réussie');
   } catch (err) {
-    console.error('La connexion a MongoDB a échoué:', err.message);
+    console.error('Erreur de connexion MongoDB Atlas:', err.message);
     process.exit(1);
   }
 };
