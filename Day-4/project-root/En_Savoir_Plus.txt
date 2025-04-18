@@ -16,8 +16,8 @@ POST http://localhost:3000/api/register           //Le serveur node n'etais pas 
 
 *ReferenceError: cd is not defined : Erreur de saisie
 
-*❌ TypeError: Cannot read properties of undefined (reading 'find')
-👉 Dans le fichier : controllers/authController.js ligne 19 // Au niveau de mon "user.find" il manquait "s" à "user"
+*TypeError: Cannot read properties of undefined (reading 'find')
+Dans le fichier : controllers/authController.js ligne 19 // Au niveau de mon "user.find" il manquait "s" à "user"
 
 
 Solutions: 

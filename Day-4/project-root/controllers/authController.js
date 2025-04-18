@@ -59,6 +59,7 @@ exports.login = async (req, res) => {
     res.json(users.map(u => ({ id: u.id, email: u.email })));
   };
 
+
   exports.getUsers = (req, res) => {
     const user = users.find(u => u.id === req.user.id);
     if (!user?.isAdmin) return res.status(403).json({ error: 'Accès refusé' });
@@ -67,7 +68,6 @@ exports.login = async (req, res) => {
   };
   
 
-
   exports.deleteUser = (req, res) => {
     const index = users.findIndex(u => u.id === req.params.id);
     if (index === -1) return res.status(404).json({ error: 'Utilisateur introuvable' });
@@ -75,5 +75,3 @@ exports.login = async (req, res) => {
     users.splice(index, 1);
     res.json({ message: 'Utilisateur supprimé' });
   };
-  
-
