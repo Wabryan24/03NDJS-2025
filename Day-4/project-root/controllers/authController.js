@@ -25,14 +25,11 @@ exports.register = async (req, res) => {
 
 
   const hashed = await bcrypt.hash(password, 10);
-  const user = { id: Date.now().toString(), email, password: hashed, isAdmin: false, isAdmin: true };
+  const user = { id: Date.now().toString(), email, password: hashed, isAdmin: false };
   users.push(user);
 
   const { password: _, ...userWithoutPass } = user;
   res.status(201).json(userWithoutPass);
-
-
-
   
 };
 
@@ -61,6 +58,7 @@ exports.login = async (req, res) => {
   exports.getUsers = (req, res) => {
     res.json(users.map(u => ({ id: u.id, email: u.email })));
   };
+
   exports.getUsers = (req, res) => {
     const user = users.find(u => u.id === req.user.id);
     if (!user?.isAdmin) return res.status(403).json({ error: 'Accès refusé' });
