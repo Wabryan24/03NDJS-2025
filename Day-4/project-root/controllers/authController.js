@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 // On importe la bibliothèque 'jsonwebtoken' et on la stocke dans la constante 'jwt'.
 // Cette bibliothèque permet de créer, signer et vérifier des tokens JWT (JSON Web Tokens),
 // qui sont souvent utilisés pour l'authentification et la gestion des sessions utilisateurs.
-const { users } = require('../models/userModel');
+const users = require('../models/userModel');
 // On importe l'objet 'users' depuis le fichier '../models/userModel'.
 // Ce fichier contient probablement la définition du modèle d'utilisateurs (ex: schéma, méthodes...).
 // 'users' est utilisé pour interagir avec les données des utilisateurs (ex: création, recherche dans la base de données).
@@ -19,12 +19,21 @@ exports.register = async (req, res) => {
   const exists = users.find(user => user.email === email);
   if (exists) return res.status(400).json({ error: "L'email existe deja" });
 
+  if (password.length < 6) 
+    return res.status(400).json({ error: 'Mot de passe trop court, utilisez au moins 06 caractères' });
+
+
+
   const hashed = await bcrypt.hash(password, 10);
-  const user = { id: Date.now().toString(), email, password: hashed };
+  const user = { id: Date.now().toString(), email, password: hashed, isAdmin: false, isAdmin: true };
   users.push(user);
 
   const { password: _, ...userWithoutPass } = user;
   res.status(201).json(userWithoutPass);
+
+
+
+  
 };
 
 
@@ -51,6 +60,14 @@ exports.login = async (req, res) => {
 
   exports.getUsers = (req, res) => {
     res.json(users.map(u => ({ id: u.id, email: u.email })));
+  };
+  
+  exports.deleteUser = (req, res) => {
+    const index = users.findIndex(u => u.id === req.params.id);
+    if (index === -1) return res.status(404).json({ error: 'Utilisateur introuvable' });
+  
+    users.splice(index, 1);
+    res.json({ message: 'Utilisateur supprimé' });
   };
   
 
